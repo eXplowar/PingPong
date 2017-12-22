@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BottomRacketController : MonoBehaviour {
 
     public float speed = 8f;
-    private Rigidbody2D rb;
-    private Vector2 velocity;
-    private float margin = -1.76f;
+    Rigidbody2D rb;
+    Vector2 velocity;
+    public float margin = -1.76f;
+    float sliderValue;
 
     // Use this for initialization
     void Start() {
@@ -40,5 +42,9 @@ public class BottomRacketController : MonoBehaviour {
 
     public void SetRacketToCenter() {
         transform.position = new Vector2(0, margin);
+    }
+
+    public void OnSliderDrag(UnityEngine.UI.Slider slider) {
+        transform.position = new Vector3(slider.value, transform.position.y, transform.position.z);
     }
 }

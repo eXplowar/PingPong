@@ -18,6 +18,7 @@ public class Main : MonoBehaviour {
 
     public void RestartGame() {
         GameObject.Find("BottomRacket").GetComponent<BottomRacketController>().SetRacketToCenter();
+        GameObject.Find("TopRacket").GetComponent<TopRacketController>().SetRacketToCenter();
         GameObject.Find("Ball").transform.position = new Vector3(0, 0, 0);
         GameObject.Find("Ball").GetComponent<Ball>().ChangeColor();
         GameObject.Find("Ball").GetComponent<Ball>().ChangeSize();
