@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class WallCollision : MonoBehaviour {
+public class WallCollision : NetworkBehaviour {
+
+    [SerializeField] GameObject ballObject;
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.transform.name == "Ball") {
-            GameObject.Find("Camera").GetComponent<Main>().RestartGame();
-        }
+        var ball = Instantiate(ballObject, GameObject.Find("SpawnBall").GetComponent<Transform>().transform.position, Quaternion.identity);
+        Destroy(collision.gameObject);
+        NetworkServer.Spawn(ball);
     }
 }
